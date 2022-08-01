@@ -1,6 +1,7 @@
 ﻿using AKAPI.Models;
 using AKAPI.Repository.Interfaces;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,6 +20,7 @@ namespace AKAPI.Controllers
             _mapper = mapper;
         }
 
+        [Authorize(Roles ="test")]
         [HttpGet]
         public IActionResult GetNationalParks()
         {
@@ -33,6 +35,7 @@ namespace AKAPI.Controllers
             return Ok(parkDTO);
         }
 
+        [Authorize(Roles = "test")]
         [HttpGet("{nationalParkId:int}", Name = "GetNationalPark")]
         public IActionResult GetNationalPark(int nationalParkId)
         {
